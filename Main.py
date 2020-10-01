@@ -2,38 +2,23 @@ import sys
 from tkinter import *
 from PIL import Image, ImageTk
 
-file_path = ""
-imgX = 960
-imgY = 540
+file_path = str(sys.argv[1])
 
-def get_file():
-	global file_path
-	try:
- 		file_path = str(sys.argv[1])
- 		print(file_path)
-	except LookupError:
- 		print("error")
- 		sys.exit(1)
+imagePIL = Image.open(file_path)
+(width, height) = imagePIL.size
 
-def main():
-	global imgX
-	global imgY
+imagePIL = Image.open(file_path)
+imagePIL = imagePIL.resize((width, int(imagePIL.size[1] * (width / imagePIL.size[0]))), Image.ANTIALIAS)
 
-	get_file()
-	imagePIL = Image.open(file_path)
-	imagePIL = imagePIL.resize((imgX, int(imagePIL.size[1] * (imgX / imagePIL.size[0]))), Image.ANTIALIAS)
+root = Tk()
+root.title("Picture reader")
+root.geometry(f'{width}x{height}')
+root.resizable(False, False)
 
-	root = Tk()
-	root.title("Picture reader")
-	root.geometry("960x540")
-	root.resizable(False, False)
+image = ImageTk.PhotoImage(imagePIL)
 
-	image = ImageTk.PhotoImage(imagePIL)
+canv = Canvas(root, width = width, height = height)
+imageSprite = canv.create_image(width / 2, height / 2, image = image)
+canv.pack()
 
-	canv = Canvas(root, width = imgX, height = imgY)
-	imageSprite = canv.create_image(imgX / 2, imgY / 2, image = image)
-	canv.pack()
-
-	root.mainloop()
-
-main()
+root.mainloop()

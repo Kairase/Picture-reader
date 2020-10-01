@@ -10,7 +10,7 @@ Hi! **Picture-reader** is a Windows picture reader based on Python 3.8.
 
 You must download "Picture reader.exe" from the root of the repository. Then you have to open the image with "Picture reader.exe".
 
-![OpenFile](https://image.prntscr.com/image/B3_MDEGjRDaimS0b8aQNKg.png)
+![OpenFile](https://image.prntscr.com/image/EmCtDUhDTH_HHxAgBFwLag.png)
 
 Then you will see a window like this:
 
